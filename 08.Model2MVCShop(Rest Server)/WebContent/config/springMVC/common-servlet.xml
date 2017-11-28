@@ -30,7 +30,11 @@
    	        모든 기능을 사용 할 수 있는 아래의 설정으로 변경 -->
 	<mvc:annotation-driven />
 	
-	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000"/>
+        <property name="maxInMemorySize" value="100000000"/>
+    </bean>
+
 	<!-- ■ Annotation 기반의 모든 기능을 사용 할 수 있는 설정
 	          <mvc:annotation-driven /> 사용으로 interceptor 를 직접
 	          DefaultAnnotationHandlerMapping 에 주입 할 수 없으니 

@@ -1,6 +1,8 @@
 package com.model2.mvc.web.product;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
@@ -65,13 +70,13 @@ public class ProductController {
 	
 	
 	@RequestMapping(value="addProduct", method=RequestMethod.POST )
-	public String addProduct( @ModelAttribute("product") Product product ,HttpServletRequest request,  Model model ) throws Exception {
+	public String addProduct( @ModelAttribute("product") Product product, @RequestParam("multi") MultipartFile multi, HttpServletRequest request, Model model ) throws Exception {
 
 		System.out.println("/product/addProduct : POST");
 		//Business Logic
 		
-		if(FileUpload.isMultipartContent(request)) {
-			String temDir = "C:\\Users\\bitcamp\\git\\07PJT01\\07.Model2MVCShop(URI,pattern)\\WebContent\\images\\uploadFiles\\";
+	/*	if(FileUpload.isMultipartContent(request)) {
+			String temDir = "C:\\Users\\bitcamp\\git\\08PJT\\08.Model2MVCShop(Rest Server)\\WebContent\\images\\uploadFiles\\";
 		
 		DiskFileUpload fileUpload = new DiskFileUpload();
 		fileUpload.setRepositoryPath(temDir);
@@ -126,7 +131,17 @@ public class ProductController {
 			}
 		}else {
 			System.out.println("인코딩타입이 mulpart/form-data가 아닙니다.");
-			}
+			}*/
+		
+		
+		File f = new File("C:\\Users\\bitcamp\\git\\08PJT\\08.Model2MVCShop(Rest Server)\\WebContent\\images\\uploadFiles\\"+multi.getOriginalFilename());
+		multi.transferTo(f);
+
+		System.out.println(multi.getOriginalFilename());
+		product.setFileName(multi.getOriginalFilename());
+		productService.addProduct(product);
+		model.addAttribute("productVO", product);
+
 		return "forward:/product/addProduct.jsp";
 	}
 	

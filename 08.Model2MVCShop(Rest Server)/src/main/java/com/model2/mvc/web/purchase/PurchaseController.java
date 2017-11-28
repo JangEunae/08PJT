@@ -75,11 +75,9 @@ public class PurchaseController {
 		Product productVO = productService.getProduct(Integer.parseInt(prodNo));
 		User userVO = userService.getUser(userId);
 		
-		String viewName = "forward:/purchase/addPurchaseView.jsp";
-		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.setViewName(viewName);
+		modelAndView.setViewName("forward:/purchase/addPurchaseView.jsp");
 		modelAndView.addObject("userVO",userVO);
 		modelAndView.addObject("productVO", productVO);
 		//model.addAttribute("userVO",userVO);
@@ -154,11 +152,9 @@ public class PurchaseController {
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		System.out.println(resultPage);
 		
-		String viewName = "forward:/purchase/listPurchase.jsp";
-		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.setViewName(viewName);
+		modelAndView.setViewName("forward:/purchase/listPurchase.jsp");
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);

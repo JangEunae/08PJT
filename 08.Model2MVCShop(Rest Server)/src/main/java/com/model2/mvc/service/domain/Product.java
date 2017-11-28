@@ -2,6 +2,8 @@ package com.model2.mvc.service.domain;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 
 public class Product {
 	
@@ -13,6 +15,7 @@ public class Product {
 	private int prodNo;
 	private Date regDate;
 	private String proTranCode;
+	private MultipartFile multi;
 	
 	public Product(){
 	}
@@ -64,6 +67,14 @@ public class Product {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+
+	public MultipartFile getMulti() {
+		return multi;
+	}
+
+	public void setMulti(MultipartFile multi) {
+		this.multi = multi;
 	}
 
 	// Override
