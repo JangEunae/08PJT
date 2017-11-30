@@ -15,7 +15,7 @@ public class Product {
 	private int prodNo;
 	private Date regDate;
 	private String proTranCode;
-	private MultipartFile multi;
+	//private MultipartFile multi;
 	
 	public Product(){
 	}
@@ -69,13 +69,13 @@ public class Product {
 		this.regDate = regDate;
 	}
 
-	public MultipartFile getMulti() {
-		return multi;
-	}
+	//public MultipartFile getMulti() {
+	//	return multi;
+	//}
 
-	public void setMulti(MultipartFile multi) {
-		this.multi = multi;
-	}
+	//public void setMulti(MultipartFile multi) {
+	//	this.multi = multi;
+	//}
 
 	// Override
 	public String toString() {
